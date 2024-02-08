@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RelationalRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <%= render template: 'layouts/header' %>
+    <% flash.each do |type, message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

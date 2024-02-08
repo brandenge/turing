@@ -1,0 +1,30 @@
+<h2><%= @vendor.name %></h2>
+
+<h3>Contact Info:</h3>
+<p><%= @vendor.contact_name %></p>
+<p><%= @vendor.contact_phone %></p>
+<p>Credit Accepted?: <%= @vendor.credit_accepted ? 'YES' : 'NO' %></p>
+<p>Description: <%= @vendor.description %></p>
+
+<h3>Search for Markets to add this vendor:</h3>
+<%= form_with url: markets_search_path, method: :get do |form| %>
+  <%= form.text_field :vendor_id, value: @vendor.id, hidden: true %>
+  <%= form.text_field :name, placeholder: 'name' %>
+  <%= form.text_field :city, placeholder: 'city' %>
+  <%= form.text_field :state, placeholder: 'state' %>
+  <%= form.submit 'Search' %>
+<% end %>
+
+<% if @search_results %>
+  <div id='search_results'>
+    <p><%= successful_search_message(@search_results) %></p>
+    <% @search_results[:markets].map do |market| %>
+      <div class='search_result'>
+        <%= link_to market.name, market_path(market.id) %>
+        <%= button_to 'Add Market', vendor_path(@vendor.id)%>
+      <div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render "shared/messages" %>

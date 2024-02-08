@@ -1,0 +1,15 @@
+<h1>Admin - Shelters</h1>
+<% @shelters.each do |shelter| %>
+  <h3><%= link_to shelter.name, "/admin/shelters/#{shelter.id}" %></h3>
+<% end %>
+
+<h2>Shelters with Pending Applications</h2>
+<% if @shelters_with_pending_applications.any? %>
+  <% @shelters_with_pending_applications.each do |shelter| %>
+    <div id="shelter-<%= shelter.id %>">
+      <p><%= shelter.name %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No shelters with pending applications found.</p>
+<% end %>

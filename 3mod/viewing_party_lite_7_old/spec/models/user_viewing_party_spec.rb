@@ -1,0 +1,16 @@
+require 'rails_helper'
+
+RSpec.describe UserViewingParty, type: :model do
+  describe 'relationships' do
+    it { should belong_to(:user) }
+    it { should belong_to(:viewing_party) }
+  end
+
+  describe 'validations' do
+    it { should define_enum_for(:user_type) }
+    it { should validate_presence_of(:user_id) }
+    it { should validate_numericality_of(:user_id) }
+    it { should validate_presence_of(:viewing_party_id) }
+    it { should validate_numericality_of(:viewing_party_id) }
+  end
+end

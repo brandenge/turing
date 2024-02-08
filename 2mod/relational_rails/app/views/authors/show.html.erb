@@ -1,0 +1,15 @@
+<h2>Author Details</h2>
+
+<%= link_to 'Update Author', "/authors/#{@author.id}/edit" %>
+
+<h3>Name: <%= @author.name %></h3>
+<p>Birthdate: <%= @author.birthdate %></p>
+<p>Is Alive: <%= @author.is_alive %></p>
+<p>Citation Count: <%= @author.citation_count %></p>
+<p>Number of Published Books: <%= @author.book_count %></p>
+<%= link_to "#{@author.name} Bibliography", "/authors/#{@author.id}/books" %>
+<p>ID: <%= @author.id %></p>
+<p>Created At: <%= @author.created_at %></p>
+<p>Updated At: <%= @author.updated_at %></p>
+
+<%= link_to 'Delete Author', "/authors/#{@author.id}", method: :delete %>

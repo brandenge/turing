@@ -1,0 +1,10 @@
+<h2>Courses Index</h2>
+
+<% @courses.sort_by_name.each do |course| %>
+  <h3><%= link_to course.name, "/courses/#{course.id}" %>: <%= course.residents.count %></h3>
+
+  <h3>Residents</h3>
+  <% course.residents_sorted_by_name.each do |resident| %>
+    <p>- <%= resident.name %></p>
+  <% end %>
+<% end %>

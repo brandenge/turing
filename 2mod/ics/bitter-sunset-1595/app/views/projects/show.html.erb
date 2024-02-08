@@ -1,0 +1,14 @@
+<h2>Project Information</h2>
+
+<%= form_with url: "/projects/#{@project.id}", method: :get, local: true do |form| %>
+  <%= form.label "Contestant id" %>
+  <%= form.number_field "Contestant id" %>
+
+  <%= form.submit "Add Contestant To Project" %>
+<% end %>
+
+<h3><%= @project.name %></h3>
+<p>Material: <%= @project.material %></p>
+<p>Challenge Theme: <%= @project.challenge.theme %></p>
+<p>Number of Contestants: <%= @project.contestant_count %></p>
+<p>Average Contestant Experience: <%= @project.average_contestant_experience %> years</p>

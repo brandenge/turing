@@ -1,0 +1,26 @@
+<h2>Dish: <%= @dish.name %></h2>
+<h3>Description: <%= @dish.description %></h3>
+<h3>Chef: <%= @dish.chef_name %></h3>
+
+<%= form_with url: dish_ingredients_path , method: :post, local: true do |form| %>
+  <%= form.number_field :dish_ID, value: @dish.id, hidden: true %>
+  <%= form.label :ingredient_ID %>
+  <%= form.number_field :ingredient_ID %>
+
+  <%= form.submit 'Add Ingredient to Dish' %>
+<% end %>
+
+<table id="dish-ingredients">
+  <tr>
+    <th>Ingredient</th>
+    <th>Calories</th>
+  </tr>
+  <% @dish.ingredients.each do |ingredient| %>
+    <tr id="dish-ingredient-<%= ingredient.id %>">
+      <td><%= ingredient.name %></td>
+      <td><%= ingredient.calories %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Total Calories: <%= @dish.total_calories %></h3>

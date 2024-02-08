@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PlateBookFe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" />
+  </head>
+  <%= render partial: "layouts/navbar" %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+    <% flash.each do |type, notice| %>
+    <h3><b><%= notice %></b></h3>
+    <% end %>
+    <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<h2>Authors Index</h2>
+
+<%= link_to 'New Author', '/authors/new' %>
+<%= link_to 'Sort by and show book counts', '/authors?book_count=true' %>
+
+<%= form_with url: '/authors', method: :get, local: true do |form| %>
+  <%= form.label :exact_match_name %>
+  <%= form.text_field :exact_match_name %>
+
+  <%= form.submit 'Search for author name by exact match' %>
+<% end %>
+
+<%= form_with url: '/authors', method: :get, local: true do |form| %>
+  <%= form.label :search_name %>
+  <%= form.text_field :search_name %>
+
+  <%= form.submit 'Search for author names' %>
+<% end %>
+
+<% @authors.each do |author| %>
+  <h3><%= link_to author.name, "/authors/#{author.id}" %></h3>
+  <% if @sort_by_book_count %>
+    <p><%= "Book Count: #{author.book_count}" %></p>
+  <% end %>
+  <%= link_to "Edit #{author.name}", "/authors/#{author.id}/edit" %>
+  <%= link_to "Delete #{author.name}", "/authors/#{author.id}", method: :delete %>
+<% end %>

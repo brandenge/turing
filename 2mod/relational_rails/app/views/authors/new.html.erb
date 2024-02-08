@@ -1,0 +1,14 @@
+<h2>New Author</h2>
+
+<%= form_with url: '/authors', method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :birthdate %>
+  <%= form.text_field :birthdate, placeholder: 'YYYY-MM-DD' %>
+  <%= form.label :is_alive %>
+  <%= form.check_box :is_alive %>
+  <%= form.label :citation_count %>
+  <%= form.number_field :citation_count %>
+
+  <%= form.submit 'Create Author' %>
+<% end %>

@@ -1,0 +1,9 @@
+<h3>New Bulk Discount</h3>
+
+<%= render partial: 'form', locals: {
+  model: @discount,
+  path: merchant_discounts_path(@merchant.id),
+  button_text: "Create Bulk Discount"
+} %>
+
+<%= link_to "Bulk Discounts Index", merchant_discounts_path(@merchant.id) %>

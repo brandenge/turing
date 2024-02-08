@@ -1,0 +1,33 @@
+<h2>Books Index</h2>
+
+<%= form_with url: '/books', method: :get, local: true do |form| %>
+  <%= form.label :exact_match_title %>
+  <%= form.search_field :exact_match_title %>
+
+  <%= form.submit 'Search for book title by exact match' %>
+<% end %>
+
+<%= form_with url: '/books', method: :get, local: true do |form| %>
+  <%= form.label :search_title %>
+  <%= form.search_field :search_title %>
+
+  <%= form.submit 'Search for book titles' %>
+<% end %>
+
+<% @books.each do |book| %>
+  <h3>Title: <%= link_to "#{book.title}", "/books/#{book.id}" %></h3>
+  <% if book.subtitle %>
+    <h4>Subtitle: <%= book.subtitle %></h4>
+  <% end %>
+  <p>Author: <%= link_to "#{book.author.name}", "/authors/#{book.author.id}" %></p>
+  <p>Publisher: <%= book.publisher %></p>
+  <p>Publication Date: <%= book.publication_date %></p>
+  <p>Is In Print: <%= book.is_in_print %></p>
+  <p>Page Count: <%= book.page_count %></p>
+  <p>ID: <%= book.id %></p>
+  <p>Created At: <%= book.created_at %></p>
+  <p>Updated At: <%= book.updated_at %></p>
+
+  <%= link_to "Edit #{book.title}", "/books/#{book.id}/edit" %>
+  <%= link_to "Delete #{book.title}", "/books/#{book.id}", method: :delete %>
+<% end %>

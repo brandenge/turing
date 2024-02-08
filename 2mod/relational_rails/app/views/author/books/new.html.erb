@@ -1,0 +1,18 @@
+<h2>New Book</h2>
+
+<%= form_with url: "/authors/#{@author.id}/books", method: :post, local: true do |form| %>
+  <%= form.label :title, required: true %>
+  <%= form.text_field :title %>
+  <%= form.label :subtitle %>
+  <%= form.text_field :subtitle %>
+  <%= form.label :publisher, required: true %>
+  <%= form.text_field :publisher %>
+  <%= form.label :publication_date, required: true %>
+  <%= form.text_field :publication_date, placeholder: 'YYYY-MM-DD' %>
+  <%= form.label :is_in_print %>
+  <%= form.check_box :is_in_print %>
+  <%= form.label :page_count, required: true %>
+  <%= form.number_field :page_count %>
+
+  <%= form.submit 'Create Book' %>
+<% end %>

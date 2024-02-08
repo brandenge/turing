@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <p class ="navbar-brand">The Four Nations</p>
+    <p class="subtitle">Search For Members by their Nation</p>
+  </div>
+  <div class="airbender-container">
+    <%= image_tag("avatar.jpg", class: "airbender") %>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <%= form_tag(search_path, method: "get") do %>
+        <%= select_tag(:nation, options_for_select(element_nation), {class: "select-field"}) %>
+        <%= submit_tag('Search For Members', class: "button") %>
+      <% end %>
+    </ul>
+  </div>
+</nav>

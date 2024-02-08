@@ -1,0 +1,17 @@
+<h2>Book Details</h2>
+
+<h3>Title: <%= @book.title %></h3>
+<% if @book.subtitle %>
+  <h4>Subtitle: <%= @book.subtitle %></h4>
+<% end %>
+<p>Author: <%= link_to "#{@book.author.name}", "/authors/#{@book.author.id}" %></p>
+<p>Publisher: <%= @book.publisher %></p>
+<p>Publication Date: <%= @book.publication_date %></p>
+<p>Is In Print: <%= @book.is_in_print %></p>
+<p>Page Count: <%= @book.page_count %></p>
+<p>ID: <%= @book.id %></p>
+<p>Created At: <%= @book.created_at %></p>
+<p>Updated At: <%= @book.updated_at %></p>
+
+<%= link_to 'Update Book', "/books/#{@book.id}/edit" %>
+<%= link_to 'Delete Book', "/books/#{@book.id}", method: :delete %>

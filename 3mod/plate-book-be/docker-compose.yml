@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  web-fe:
+    container_name: plate-book-fe
+    build:
+      context: ../plate-book-fe
+    ports:
+      - "3000:3000"
+
+  web-be:
+    container_name: plate-book-be
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-${UID:-1000}}
+    ports:
+      - "10000:10000"
+    environment:
+      - DATABASE_URL=postgres://root:password@postgres-db/
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+
+  postgres-db:
+    image: postgres
+    container_name: plate-book-db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  pgdata:

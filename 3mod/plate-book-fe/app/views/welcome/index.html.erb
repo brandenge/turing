@@ -1,0 +1,56 @@
+<div class="container fluid py-5">
+  <div class="row mt-4">
+    <div class="col-md-8">
+      <div id="map" style="height: 400px;"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Hot Plates!</h5>
+        </div>
+        <div class="card-body">
+          <% @hot_plates[:data].each do |plate| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted"><%= link_to plate[:attributes][:plate_number], plate_path(plate[:id]), class: "btn-license-plate" %></h6>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script> 
+
+  async function initMap() {
+    const { Map } = await google.maps.importLibrary("maps");
+    const { Marker } = await google.maps.importLibrary("marker");
+
+    const map = new Map(document.getElementById("map"), {
+      center: { lat: 39.7392, lng: -104.9903 },
+      zoom: 4,
+    });
+
+    <% locations_array = @locations.flatten.map do |loc| 
+      {lat: loc[:attributes][:lat], lng: loc[:attributes][:lng], id: loc[:id]} 
+    end %>
+
+    const locations = <%= locations_array.to_json.html_safe %>;
+
+    for (let i = 0; i < locations.length; i++) {
+      const marker = new Marker({
+        position: { lat: locations[i].lat, lng: locations[i].lng },
+        map: map,
+        title: 'Marker number ' + i,
+      });
+
+      marker.addListener('click', () => {
+        window.location.href = '/posts/' + locations[i].id;
+      });
+    }
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["GOOGLE_MAPS_API_KEY"]%>&callback=initMap"></script>

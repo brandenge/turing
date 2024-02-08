@@ -1,0 +1,131 @@
+<% if current_user.nil? %>
+        <div class="d-flex justify-content-center">
+          <%= link_to "Login to Make a Post", "/auth/google_oauth2", class: "btn btn-primary" %>
+        </div>
+<% else %>
+  <%= form_with(url: posts_path, method: :post, local: true, html: { multipart: true }) do |form| %>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <%= form.label :title, raw('Title <span class="text-danger">*</span>'), class: 'form-label' %>
+          <%= form.text_field :title, class: 'form-control', required: true %>
+
+          <%= form.label :body, raw('Body <span class="text-danger">*</span>'), class: 'form-label' %>
+          <%= form.text_area :body, class: 'form-control', rows: 3, required: true %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <%= form.label :plate_number, raw('License Plate <span class="text-danger">*</span>'), class: 'form-label' %>
+              <%= form.text_field :plate_number, class: 'form-control', value: @plate_number || '', required: true %>
+            </div>
+          </div>
+
+          <%= form.label :street_address, class: 'form-label' %>
+          <%= form.text_field :street_address, class: 'form-control', placeholder: 'Optional' %>
+
+          <%= form.label :city, raw('City <span class="text-danger">*</span>'), class: 'form-label' %>
+          <%= form.text_field :city, class: 'form-control', required: true %>
+
+          <%= form.label :state, raw('State <span class="text-danger">*</span>'), class: 'form-label' %>
+          <%= form.select :state, [
+            ['Alabama', 'AL'], 
+            ['Alaska', 'AK'], 
+            ['Arizona', 'AZ'], 
+            ['Arkansas', 'AR'], 
+            ['California', 'CA'], 
+            ['Colorado', 'CO'], 
+            ['Connecticut', 'CT'], 
+            ['Delaware', 'DE'], 
+            ['Florida', 'FL'], 
+            ['Georgia', 'GA'], 
+            ['Hawaii', 'HI'], 
+            ['Idaho', 'ID'], 
+            ['Illinois', 'IL'], 
+            ['Indiana', 'IN'], 
+            ['Iowa', 'IA'], 
+            ['Kansas', 'KS'], 
+            ['Kentucky', 'KY'], 
+            ['Louisiana', 'LA'], 
+            ['Maine', 'ME'], 
+            ['Maryland', 'MD'], 
+            ['Massachusetts', 'MA'], 
+            ['Michigan', 'MI'], 
+            ['Minnesota', 'MN'], 
+            ['Mississippi', 'MS'], 
+            ['Missouri', 'MO'], 
+            ['Montana', 'MT'], 
+            ['Nebraska', 'NE'], 
+            ['Nevada', 'NV'], 
+            ['New Hampshire', 'NH'], 
+            ['New Jersey', 'NJ'], 
+            ['New Mexico', 'NM'], 
+            ['New York', 'NY'], 
+            ['North Carolina', 'NC'], 
+            ['North Dakota', 'ND'], 
+            ['Ohio', 'OH'], 
+            ['Oklahoma', 'OK'], 
+            ['Oregon', 'OR'], 
+            ['Pennsylvania', 'PA'], 
+            ['Rhode Island', 'RI'], 
+            ['South Carolina', 'SC'], 
+            ['South Dakota', 'SD'], 
+            ['Tennessee', 'TN'], 
+            ['Texas', 'TX'], 
+            ['Utah', 'UT'], 
+            ['Vermont', 'VT'], 
+            ['Virginia', 'VA'], 
+            ['Washington', 'WA'], 
+            ['West Virginia', 'WV'], 
+            ['Wisconsin', 'WI'], 
+            ['Wyoming', 'WY']
+          ], {}, { class: 'form-control', required: true } %>
+
+    <%= form.label :photo, class: 'form-label', for: 'photo' %>
+    <%= form.file_field :photo, id: 'photo', class: 'form-control' %>
+
+    <%= form.label :tag, class: 'form-label', for: 'selected_tags' %><br>
+
+      <div class="btn-group" role="group" aria-label="Tag Buttons">
+        <% { "Anger" => "btn-red", "Confusion" => "btn-orange", "Happy" => "btn-yellow", "Disgust" => "btn-green",
+              "Envy"=> "btn-lightgreen", "Sad" => "btn-blue", "Funny" => "btn-cyan", "Proud" => "btn-purple", "Love" => "btn-pink"}.each do |tag, color_class| %>
+          <button type="button" class="btn <%= color_class %> tag-button" data-tag="<%= tag %>"><%= tag %></button>
+        <% end %>
+      </div><br>
+
+      <%= form.label :selected_tags, for: 'selected_tags' %>
+      <%= form.text_field :selected_tags, id: 'selected_tags', readonly: true, class: 'form-control' %>
+
+
+          <div class="mt-3">
+            <%= form.submit class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    function handleTagButtonClick(event) {
+      var tag = event.target.getAttribute('data-tag');
+      var selectedTagsInput = document.getElementById('selected_tags');
+      var selectedTags = selectedTagsInput.value ? selectedTagsInput.value.split(',') : [];
+
+      if (selectedTags.includes(tag)) {
+        selectedTags = selectedTags.filter(function(selectedTag) {
+          return selectedTag !== tag;
+        });
+      } else {
+        selectedTags.push(tag);
+      }
+
+      selectedTagsInput.value = selectedTags.join(',');
+    }
+
+    var tagButtons = document.querySelectorAll('.tag-button');
+    tagButtons.forEach(button => {
+      button.addEventListener('click', handleTagButtonClick);
+    });
+  });
+</script>

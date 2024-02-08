@@ -1,0 +1,24 @@
+<%= render "shared/admin_header" %>
+
+<div class="flex-parent">
+
+  <div id="incomplete-invoices" class="flex-child">
+    <h3 class="center-header">Incomplete Invoices</h3>
+
+    <ul>
+      <% @invoices.each do |invoice| %>
+        <li><%= link_to "Invoice ##{invoice.id}", admin_invoice_path(invoice) %> - <%= format_date(invoice.created_at) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+    <div id="top-customers" class="flex-child">
+    <h3 class="center-header">Top Customers</h3>
+
+    <ol type="1">
+      <% @customers.each do |customer| %>
+        <div id="customer-<%= customer.id %>"><li><%= customer.get_name %> - <%= customer.count_successful_transactions %> purchases</li></div>
+      <% end %>
+    </ol>
+  </div>
+</div>

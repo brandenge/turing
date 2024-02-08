@@ -1,0 +1,7 @@
+<%= form_with model: @user, url: new_user_path, method: :get, local: true do |form| %>
+  <%= form.button "Create New User" %>
+<% end %>
+<h2>Existing Users</h2>
+<% @users.each do |user|%>
+<%= link_to "#{user.email}", user_dashboard_path(user) %><br>
+<% end %>

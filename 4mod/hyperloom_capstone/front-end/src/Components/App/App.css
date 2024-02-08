@@ -1,0 +1,30 @@
+* {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.App {
+  padding: 0px;
+  height: 100%;
+  width: 100vw;
+  text-align: center;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;;
+  font-family: 'Share-TechMono', sans-serif;
+  background-color: rgb(17, 25, 17);
+  height: 100vh;
+}
+
+.hidden {
+  display: hidden;
+}
+
+
+

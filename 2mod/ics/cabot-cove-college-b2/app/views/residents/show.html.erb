@@ -1,0 +1,10 @@
+<h2>Resident Details</h2>
+
+<h3>Name: <%= @resident.name %></h3>
+<p>Age: <%= @resident.age %></p>
+<p>Occupation: <%= @resident.occupation %></p>
+
+<h3>Resident Courses</h3>
+<% @resident.courses.each do |course| %>
+  <p><%= course.name %></p>
+<% end %>

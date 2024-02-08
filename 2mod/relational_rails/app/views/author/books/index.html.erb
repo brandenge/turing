@@ -1,0 +1,43 @@
+<h2>Books By <%= @author.name %></h2>
+
+<%= link_to 'Create Book', "/authors/#{@author.id}/books/new" %>
+
+<%= link_to 'Sort Books By Title', "/authors/#{@author.id}/books?sort_by=title" %>
+
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :page_count_filter %>
+  <%= form.number_field :page_count_filter %>
+  <%= form.submit 'Only return records with more than number of page count' %>
+<% end %>
+
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :exact_match_title, 'Exact Match Title:' %>
+  <%= form.search_field :exact_match_title %>
+
+  <%= form.submit 'Search for book title by exact match' %>
+<% end %>
+
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :search_title %>
+  <%= form.search_field :search_title %>
+
+  <%= form.submit 'Search for book titles' %>
+<% end %>
+
+<% @books.each do |book| %>
+
+  <h3>Title: <%= link_to book.title, "/books/#{book.id}" %></h3>
+  <% if book.subtitle %>
+    <h4>Subtitle: <%= book.subtitle %></h4>
+  <% end %>
+  <p>Publisher: <%= book.publisher %></p>
+  <p>Publication Date: <%= book.publication_date %></p>
+  <p>Is In Print: <%= book.is_in_print %></p>
+  <p>Page Count: <%= book.page_count %></p>
+  <p>ID: <%= book.id %></p>
+  <p>Created At: <%= book.created_at %></p>
+  <p>Updated At: <%= book.updated_at %></p>
+
+  <%= link_to "Edit #{book.title}", "/books/#{book.id}/edit" %>
+  <%= link_to "Delete #{book.title}", "/books/#{book.id}", method: :delete %>
+<% end %>

@@ -1,0 +1,9 @@
+<h2>Supermarket Details</h2>
+
+<h3><%= @supermarket.name %></h3>
+
+<h3>Customers</h3>
+
+<% @supermarket.customers.each do |customer| %>
+  <h3><%= link_to customer.name, customer_path(customer) %></h3>
+<% end %>

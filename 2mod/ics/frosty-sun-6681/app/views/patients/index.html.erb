@@ -1,0 +1,7 @@
+<h2>Patients Index</h2>
+
+<ul>
+<% @patients.sort_alphabetically_by_name.each do |patient| %>
+    <li><%= patient.name %></li>
+<% end %>
+</ul>

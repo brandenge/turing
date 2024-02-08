@@ -1,0 +1,18 @@
+<h2>Chef: <%= @chef.name %></h2>
+
+<%= link_to 'Chef Profile', chef_path(@chef) %>
+
+<h3>Chef Ingredients</h3>
+
+<table id="chef-ingredients">
+  <tr>
+    <th>Ingredient</th>
+    <th>Calories</th>
+  </tr>
+  <% @chef.ingredients.each do |ingredient| %>
+    <tr id="chef-ingredient-<%= ingredient.id %>">
+      <td><%= ingredient.name %></td>
+      <td><%= ingredient.calories %></td>
+    </tr>
+  <% end %>
+</table>

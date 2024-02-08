@@ -1,0 +1,52 @@
+<div class="nav-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <p class="navbar-text">Admin Dashboard</p>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Dashboard', admin_dashboard_index_path, style: 'pull-right' %>
+      <%= link_to 'Merchants', admin_merchants_path, style: 'pull-right' %>
+      <%= link_to 'Invoices', admin_invoices_path, style: 'pull-right' %></li>
+    </ul>
+  </nav>
+</div>
+
+
+<body>
+  <%= link_to 'Create Merchant', new_admin_merchant_path %>
+  <div class="row">
+    <p class='mr-auto col-sm-5'>Top Merchants</p>
+    <p class='ml-auto col-sm-5'>Enabled Merchants</p>
+  </div>
+  <ul class='mr-auto col-sm-4'>
+    <% @merchants.top_merchants.each do |m| %>
+      <section id="toppy-<%= m.id %>">
+        <li><%= link_to "#{m.name}", admin_merchant_path(m) %> - $<%= m.total_revenue %> in sales</li>
+      </section>
+      <% if m.best_day.present? %>
+        <section id="top-<%= m.id %>">
+          <p>Top Selling Date for <%= m.name %> was on <%= m.best_day.strftime("%_m/%d/%Y") %></p>
+        </section>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <ul class='ml-auto col-sm-4'>
+    <% @enabled_merchants.each do |m| %>
+      <section id="merchant-<%= m.id %>">
+        <li><%= link_to "#{m.name}", admin_merchant_path(m) %>
+        <%= button_to 'Disable', admin_merchant_status_path(m), method: :patch, params: {status: 'disabled'} %></li>
+      </section>
+    <% end %>
+  </ul>
+
+  <div class="row">
+    <p class='ml-auto col-sm-5'>Disabled Merchants</p>
+  </div>
+  <ul class='ml-auto col-sm-4'>
+      <% @disabled_merchants.each do |m| %>
+      <section id="merchant-<%= m.id %>">
+        <li><%= link_to "#{m.name}", admin_merchant_path(m) %>
+        <%= button_to 'Enable', admin_merchant_status_path(m), method: :patch, params: {status: 'enabled'} %>
+      </section>
+    <% end %>
+  </ul>
+</body>

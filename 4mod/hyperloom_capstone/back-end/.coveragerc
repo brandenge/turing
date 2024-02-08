@@ -1,0 +1,9 @@
+[run]
+branch = True
+omit =
+  services/*
+  fixtures/species.py
+  manage.py
+  worlds/asgi.py
+  worlds/wsgi.py
+  worlds/utils.py

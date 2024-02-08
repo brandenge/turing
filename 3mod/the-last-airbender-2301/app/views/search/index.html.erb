@@ -1,0 +1,29 @@
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <p class ="navbar-brand">The Four Nations</p>
+    </div>
+    <div class="airbender-container">
+      <%= image_tag("avatar.jpg", class: "airbender") %>
+    </div>
+  </nav>
+  <h2 class="subtitle">Search Results for: <%= @affiliation %></h2>
+  <h3>The total number of people who live in the <%= @affiliation %> is: <%= @characters.size %></h3>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Allies</th>
+      <th>Enemies</th>
+      <th>Affiliations</th>
+    </tr>
+    <% @characters.first(25).each_with_index do |character, index|%>
+      <tr id="character-<%= index %>">
+        <td><%= character[:name] %><td>
+        <td><img src="<%= character[:photoUrl] %>" width="200"><td>
+        <td><%= character[:allies] %><td>
+        <td><%= character[:enemies] %><td>
+        <td><%= character[:affiliation] %><td>
+      </tr>
+    <% end %>
+  </table>

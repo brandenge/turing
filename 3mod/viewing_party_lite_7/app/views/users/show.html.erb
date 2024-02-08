@@ -1,0 +1,16 @@
+<%= button_to "Log Out", logout_path, method: :delete %>
+
+<h3><%= @facade.user_name %>'s Dashboard</h3>
+<%= form_with url: user_dashboard_discover_index_path(@facade.user), method: :get , local: true do |form| %>
+  <%= form.submit 'Discover Movies' %>
+<% end %>
+
+<section class='card-container'>
+  <% @facade.movies.each do |party_hash| %>
+    <div class='card' style="background-image:url('<%= party_hash[:movie].image_url %>')">
+      <h4><%= party_hash[:movie].title %></h4>
+      <p><%= party_hash[:viewing_party].start_time %></p>
+      <p><%= party_hash[:user_type] %></p>
+    </div>
+  <% end %>
+</section>

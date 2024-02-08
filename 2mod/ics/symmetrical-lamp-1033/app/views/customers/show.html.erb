@@ -1,0 +1,31 @@
+<h2>Customer Details</h2>
+
+<h3><%= @customer.name %></h3>
+
+<%= form_with url: "/customer_items", method: :post, local: true do |form| %>
+  <%= form.number_field :'Customer id', value: @customer.id, hidden: true %>
+  <%= form.label :'Item id' %>
+  <%= form.number_field :'Item id' %>
+
+  <%= form.submit 'Add Item' %>
+<% end %>
+
+<h3>Customer Item Details</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Supermarket</th>
+  </tr>
+  <% @customer.items.each do |item| %>
+    <tr id="item-<%= item.id %>">
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= format_price(item) %></td>
+      <td><%= item.supermarket.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3><%= link_to 'Customer Index', customers_path %></h3>

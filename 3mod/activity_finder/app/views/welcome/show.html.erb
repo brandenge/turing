@@ -1,0 +1,8 @@
+<h1>Activity Finder</h1>
+
+
+<%= form_with url: "/search", method: :get, local: true do |form| %>
+  <%= form.label :num_participants, "Number of Participants" %>
+  <%= form.number_field :num_participants %>
+  <%= form.submit "Find Activities" %>
+<% end %>

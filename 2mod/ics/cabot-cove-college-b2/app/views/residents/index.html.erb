@@ -1,0 +1,9 @@
+<h2>Residents Index</h2>
+
+<h3>Resident Average Age: <%= @resident_average_age %></h3>
+
+<% @residents.sort_by_name.each do |resident| %>
+  <h3><%= link_to resident.name, "/residents/#{resident.id}" %></h3>
+  <p>Age: <%= resident.age %></p>
+  <p>Occupation: <%= resident.occupation %></p>
+<% end %>

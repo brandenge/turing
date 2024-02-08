@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Test Template
+{% endblock %}
+
+{% block content %}
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+    {% for member in members %}
+      <tr>
+        <td>{{ member.id }}</td>
+        <td>{{ member.firstname }}</td>
+        <td>{{ member.lastname }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

@@ -1,0 +1,14 @@
+<h2>Edit Author</h2>
+
+<%= form_with url: "/authors/#{@author.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name, value: @author.name %>
+  <%= form.label :birthdate %>
+  <%= form.text_field :birthdate, value: @author.birthdate %>
+  <%= form.label :is_alive %>
+  <%= form.check_box :is_alive, checked: @author.is_alive %>
+  <%= form.label :citation_count %>
+  <%= form.number_field :citation_count, value: @author.citation_count.to_s %>
+
+  <%= form.submit 'Update Author' %>
+<% end %>

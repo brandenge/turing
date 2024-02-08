@@ -1,0 +1,169 @@
+.world-img {
+  width: 100%;
+  height: 45rem;
+  object-fit: cover;
+}
+
+.single-world-view h2 {
+  text-align: left;
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+  margin: 0px;
+  margin-top: 2rem;
+}
+
+.single-world-view p {
+  font-size: 1.1rem;
+  padding: 0 20px;
+  color: #f1f6f9;
+  text-align: left;
+}
+
+.single-top {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.single-top-wrapper {
+  border-radius: 20px;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%); 
+  position: absolute;
+  background-color: rgba(101, 99, 99, 0.6);
+  padding: 0 20px;
+  max-width: 45rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 90vh;
+}
+
+.attr-name,
+p.lvl-name {
+  color: white;
+  font-weight: bold;
+}
+
+.single-geo {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.single-mag-tech {
+  width: 100%;
+}
+
+.level {
+  color: #15be8b;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 1rem;
+  border: 1px #15be8b solid;
+  border-radius: 5px;
+}
+
+p.lvl-name{
+  margin-bottom: 3px;
+}
+
+p.lvl-detail{
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.tabs {
+  display: flex;
+  width: 100%;
+}
+
+.tab {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: rgb(0, 0, 0);
+  color: #15be8b;
+  inset: 0;
+  flex-grow: 1;
+  height: 60px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.tab-active {
+  border-radius: 15px;
+  box-shadow: none;
+  outline: none;
+  background-color: rgb(25, 27, 25);
+  color: #15be8b;
+  inset: 0;
+  flex-grow: 1;
+  height: 60px;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: none;
+}
+
+.tab:hover,
+.tab-active:hover {
+  cursor: pointer;
+  color: #f1f6f9;
+}
+
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+.hist-det-text-wrapper {
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
+  border-radius: 10px; 
+  color: white; 
+  min-height: 50%;
+  max-height: 100%;
+  width: 50%;
+  text-align: center; 
+}
+@media screen and (max-width: 54em) {
+  .single-top-wrapper {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(-50%);
+  }
+}
+@media screen and (max-width: 34em) {
+  .tab {
+    font-size: 1rem;
+  }
+
+  .tab-active {
+    font-size: 1rem;
+  }
+
+  .single-world-view h1 {
+    font-size: 3.25rem;
+  }
+}
+
+@media(max-width: 800px) {
+
+  .single-world-view {
+    width: 100vw;
+  }
+  .single-world-view p {
+    font-size: .9rem;
+  }
+  .single-top-wrapper {
+    min-width: 0rem;
+    width: 90%;
+    padding-left: 0rem;
+  }
+}

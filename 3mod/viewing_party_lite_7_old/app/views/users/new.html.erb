@@ -1,0 +1,8 @@
+<h3>Register a New User</h3>
+<%= form_with model: @user, url: { controller: 'users', action: 'create' }, local: true do |form| %>
+  <%= form.label :name, 'Name' %>
+  <%= form.text_field :name %><br>
+  <%= form.label :email, 'Email' %>
+  <%= form.text_field :email %><br>
+  <%= form.submit 'Create New User' %>
+<% end %>

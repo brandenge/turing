@@ -1,0 +1,58 @@
+.title-box {
+  all: unset;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 1.3rem;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.header-container {
+  height: 3.5rem;
+  border-bottom: white solid .5px;
+  font-family: 'Share-TechMono', sans-serif;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  z-index: 2;
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.header-button {
+  z-index: 1;
+  font-size: 1rem;
+  padding-right: 40px;
+  outline: none;
+  background: none;
+  border-style: none;
+  color: white ;
+  cursor: pointer;
+  border-radius: .5rem;
+  font-family: 'Share-TechMono', sans-serif;
+}
+
+.hidden {
+  display:hidden;
+}
+
+.spaced-out {
+  justify-content: space-between;
+}
+
+.header-button:hover {
+  color:#f1f6f9 ;
+}
+
+@media screen and (max-width: 34em) {
+
+  .header-button {
+    font-size: .9rem;
+    padding-right: 30px;
+  }
+}

@@ -1,0 +1,26 @@
+<%= render "shared/merchant_header" %>
+
+<div id="photo">
+  <img src=<%= @random_photo.thumb_url %>>
+</div>
+
+<div class="flex-parent">
+  <section id="items-ready-to-ship" class="flex-child">
+    <h3 class="center-header">Items Ready to Ship</h3>
+    <% @merchant.items_not_shipped.each do |invoice_item| %>
+      <div id="invoice-item-<%= invoice_item.id %>">
+        <p><%= invoice_item.item.name %> - Invoice #<%= link_to invoice_item.invoice.id, merchant_invoice_path(@merchant, invoice_item.invoice) %> - <%= format_date(invoice_item.invoice.created_at) %></p>
+      </div>
+    <% end %>
+  </section>
+
+
+  <section id="top-five-cutomers" class="flex-child">
+    <h3 class="center-header">Top 5 Customers</h3>
+    <% @merchant.top_five_customers.each do |customer| %>
+      <div id="top-five-<%= customer.id %>">
+        <p><%= customer.name %> - <%= customer.transactions_count %> transactions</p>
+      </div>
+    <% end %>
+  </section>
+</div>

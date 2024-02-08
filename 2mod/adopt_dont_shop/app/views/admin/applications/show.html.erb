@@ -1,0 +1,21 @@
+<h1>Admin - Application</h1>
+
+<h2>Application Pets</h2>
+
+<h3>Application Status: <%= @application.status %></h3>
+
+<% @application.pets.each do |pet| %>
+  <div id="pet-<%= pet.id %>">
+    <h3><%= pet.name %></h3>
+    <% if @application.pet_application(pet.id).status == "Pending" %>
+      <% if pet.adoptable %>
+        <%= button_to 'Approve Pet', "/pet_applications/#{@application.pet_application(pet.id).id}?status=Approved", method: :patch %>
+      <% else %>
+        <p>Pet already adopted</p>
+      <% end %>
+      <%= button_to 'Reject Pet', "/pet_applications/#{@application.pet_application(pet.id).id}?status=Rejected", method: :patch %>
+    <% else %>
+      <h4>Pet Status: <%= @application.pet_application(pet.id).status %></h4>
+    <% end %>
+  </div>
+<% end %>

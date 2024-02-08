@@ -1,0 +1,7 @@
+<% flash.each do |type, message| %>
+  <% if message.is_a? String %>
+    <p class=<%= type %>>
+      <%= message %>
+    </p>
+  <% end %>
+<% end %>

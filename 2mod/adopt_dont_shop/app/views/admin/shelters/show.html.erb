@@ -1,0 +1,18 @@
+<h1>Admin - Shelters - Show</h1>
+<br>
+<h2>Shelter Name: <%= @shelter_name %></h2>
+<p>City: <%= @shelter_city %></p>
+<br>
+<h3>Shetler Statistics</h3>
+<p>Average age of adoptable pets: <%= number_with_precision(@avg_pet_age, precision: 1) %></p>
+<p>Number of adoptable pets: <%= @adoptable_pets_count %></p>
+<p>Number of pets adopted from this shelter: <%= @adopted_pets_count %></p>
+<br>
+<h3>Action Required</h3>
+<% if @pending_pets.any? %>
+  <% @pending_pets.each do |(pet_name, pet_id, app_id)| %>
+    <div id="pet-<%= pet_id %>-app-<%= app_id %>">
+      <p><%= pet_name %> <%= link_to "View #{pet_name} Application", "/admin/applications/#{app_id}" %></p>
+    </div>
+  <% end %>
+<% end %>

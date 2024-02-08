@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HouseSalad7</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+   <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <%= link_to "HouseSalad", root_path, class: "navbar-brand" %>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <%= form_tag :search, method: :get, class: "form-inline" do %>
+            <div class="form-group search-field">
+              <%= select_tag :state, options_for_select(us_states) %>
+              <%= submit_tag "Locate Members of the House", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <%= yield %>
+
+  </body>
+</html>

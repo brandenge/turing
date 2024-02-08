@@ -1,0 +1,17 @@
+<h2>Doctor Profile<h2>
+<h3>Doctor: <%= @doctor.name %></h3>
+<p>Specialty: <%= @doctor.specialty %></p>
+<p>University: <%= @doctor.university %></p>
+<p>Hospital: <%= @doctor.hospital_name %></p>
+
+<h3>Patients</h3>
+<ul>
+<% @doctor.patients.each do |patient| %>
+  <li id="patient-<%= patient.id %>">
+    <%= patient.name %>
+    <%= form_with url: doctor_patient_path(@doctor, patient), method: :delete, local: true do |form| %>
+      <%= form.submit 'Delete Patient' %>
+    <% end %>
+  </li>
+<% end %>
+</ul>

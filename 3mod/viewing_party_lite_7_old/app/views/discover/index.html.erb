@@ -1,0 +1,6 @@
+<h3>Discover Movies</h3>
+<%= link_to "Top Rated Movies", "/users/#{@user.id}/movies?q=top%20rated", method: :get %>
+<%= form_with url: "/users/#{@user.id}/movies?q=#{@search}", method: :get, local: true do |form| %>
+  <%= form.search_field :q, placeholder: "Search" %>
+  <%= form.submit "Find Movies" %>
+<% end %>

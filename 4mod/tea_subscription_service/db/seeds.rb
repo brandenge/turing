@@ -1,0 +1,17 @@
+customer1 = FactoryBot.create(:customer)
+customer2 = FactoryBot.create(:customer)
+customer3 = FactoryBot.create(:customer)
+customer4 = FactoryBot.create(:customer)
+customer5 = FactoryBot.create(:customer)
+
+tea1 = FactoryBot.create(:tea)
+tea2 = FactoryBot.create(:tea)
+tea3 = FactoryBot.create(:tea)
+tea4 = FactoryBot.create(:tea)
+tea5 = FactoryBot.create(:tea)
+
+subscription1 = FactoryBot.create(:subscription, customer: customer1, tea: tea1)
+subscription1 = FactoryBot.create(:subscription, customer: customer1, tea: tea2)
+subscription1 = FactoryBot.create(:subscription, customer: customer2, tea: tea2)
+subscription1 = FactoryBot.create(:subscription, customer: customer3, tea: tea3)
+subscription1 = FactoryBot.create(:subscription, customer: customer4, tea: tea4)
